@@ -58,13 +58,14 @@ To install `cnsh` globally, follow these steps:
 To add a package to your project, use:
 
 ```bash
-cnsh add <package-name>
+cnsh add <package-name> --verbose
 ```
+> ###### the verbose flag is optional, it is used to display more information
 
 For example, to add `lodash`:
 
 ```bash
-cnsh add lodash
+cnsh add lodash --verbose
 ```
 
 This installs `lodash` into your project's `cnsh_lib` directory.
