@@ -161,6 +161,41 @@ async function fetchData() {
 fetchData();
 ```
 
+UMD:
+
+```js
+(function (root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['axios'], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node.js or CommonJS
+        module.exports = factory(require('./cnsh_lib/axios/package/dist/axios.js'));
+    } else {
+        // Browser global
+        root.fetchData = factory(root.axios);
+    }
+}(typeof self !== 'undefined' ? self : this, function (axios) {
+    'use strict';
+
+    // Function to fetch data from a public API
+    async function fetchData() {
+        try {
+            const response = await axios.get('https://jsonplaceholder.typicode.com/posts/1');
+            console.log('Data fetched:', response.data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    // Return the function as part of the UMD module
+    return fetchData;
+}));
+
+// To call fetchData in a browser environment:
+fetchData();
+```
+
 3. **Run Your Script**
 
    Execute your script using Node.js:
