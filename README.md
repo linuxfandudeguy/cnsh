@@ -145,6 +145,22 @@ Here’s a demonstration of how to use `axios` with `cnsh`:
    fetchData();
    ```
 
+or if you like CommonJS better:
+
+```js
+async function fetchData() {
+    try {
+        const axios = await import('./cnsh_lib/axios/package/dist/esm/axios.min.js');
+        const response = await axios.default.get('https://jsonplaceholder.typicode.com/posts/1');
+        console.log('Data fetched:', response.data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+fetchData();
+```
+
 3. **Run Your Script**
 
    Execute your script using Node.js:
