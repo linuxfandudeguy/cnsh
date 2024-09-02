@@ -7,6 +7,7 @@
 [![npm version](https://img.shields.io/npm/v/cnsh)](https://www.npmjs.com/package/cnsh)
 [![npm downloads](https://img.shields.io/npm/dt/cnsh)](https://www.npmjs.com/package/cnsh)
 <a href="https://coveralls.io/github/linuxfandudeguy/cnsh"><img src="https://img.shields.io/coveralls/linuxfandudeguy/cnsh" alt="Coverage Status">
+
 `cnsh` is a lightweight package manager that provides a minimal alternative to Yarn. It fetches packages from the npm registry and installs them in a simplified directory structure.
 
 ## Features
