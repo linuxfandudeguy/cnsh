@@ -129,7 +129,7 @@ Here’s a demonstration of how to use `axios` with `cnsh`:
 
    ```javascript
    // Import axios from the local path where cnsh stores it
-   import axios from './cnsh_lib/axios/package/index.mjs';
+   import axios from './cnsh_lib/axios/package/dist/esm/axios.min.js';
 
    // Function to fetch data from a public API
    async function fetchData() {
