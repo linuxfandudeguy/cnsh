@@ -1,0 +1,7 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="100" cy="100" r="95" stroke="black" stroke-width="10" fill="black"/>
+  
+  <!-- Text -->
+  <text x="50%" y="50%" text-anchor="middle" stroke="purple" stroke-width="1px" dy=".3em" font-family="Fira Code, monospace" font-size="48" fill="purple">_cnsh</text>
+</svg>
