@@ -5,9 +5,7 @@
 
 [![npm version](https://img.shields.io/npm/v/cnsh)](https://www.npmjs.com/package/cnsh)
 [![npm downloads](https://img.shields.io/npm/dt/cnsh)](https://www.npmjs.com/package/cnsh)
-
 [![License](https://img.shields.io/npm/l/cnsh)](https://opensource.org/licenses/MIT)
-
 [![Coverage Status](https://img.shields.io/coveralls/linuxfandudeguy/cnsh)](https://coveralls.io/github/linuxfandudeguy/cnsh)
 [![GitHub stars](https://img.shields.io/github/stars/linuxfandudeguy/cnsh?style=social)](https://github.com/linuxfandudeguy/cnsh/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/linuxfandudeguy/cnsh?style=social)](https://github.com/linuxfandudeguy/cnsh/network)
