@@ -1,5 +1,7 @@
 
 # cnsh
+            
+<img src="assets/logo.svg" alt="cnsh logo" class="lol">
 
 `cnsh` is a lightweight package manager that provides a minimal alternative to Yarn. It fetches packages from the npm registry and installs them in a simplified directory structure.
 
