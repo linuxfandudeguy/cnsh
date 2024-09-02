@@ -77,6 +77,13 @@ cnsh add lodash --verbose
 
 This installs `lodash` into your project's `cnsh_lib` directory.
 
+### Updating
+ To update it Run this command in your terminal:
+
+```bash
+npm install -g cnsh@latest
+```
+
 ### Removing a Package
 
 To remove a package, use:
