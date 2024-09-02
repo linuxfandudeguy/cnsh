@@ -22,7 +22,7 @@ To install `cnsh` globally, follow these steps:
    Run the following command in your terminal:
 
    ```bash
-   npm install -g cnsh
+   npm install -g cnsh --verbose
    ```
 
    This will install `cnsh` globally, making it available from any directory on your system.
