@@ -46,8 +46,7 @@ To install `cnsh` globally, follow these steps:
 
    If `cnsh` is installed, you should see the following output:
 
-```bin
-
+```mathematica
 Usage: cnsh <command> [options] [package]
 
 Commands:
