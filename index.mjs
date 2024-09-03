@@ -7,27 +7,108 @@ import path from 'path';
 import os from 'os';
 import chalk from 'chalk';
 import ora from 'ora';
+import { exec } from 'child_process';
+import util from 'util';
+import readline from 'readline';
+
+const execPromise = util.promisify(exec);
 
 const REGISTRY_URL = 'https://registry.npmjs.org';
 
+const DEFAULT_PACKAGE_JSON = {
+    name: "my-project",
+    version: "1.0.0",
+    description: "A new project",
+    main: "index.js",
+    scripts: {
+        test: "echo \"Error: no test specified\" && exit 1"
+    },
+    keywords: [],
+    author: "Your Name",
+    license: "ISC",
+};
+
 const args = process.argv.slice(2);
 
-if (args.length === 0) {
-    console.log(chalk.red('Usage: cnsh <add|remove|install> [-g] <package>'));
-    process.exit(1);
-}
+const printHelp = () => {
+    console.log(`
+Usage: cnsh <command> [options] [package]
 
-const command = args[0];
-const isGlobal = args.includes('-g');
-const packageName = args[args.length - 1];
+Commands:
+  add       Install a package
+  remove    Remove a package
+  install   Install dependencies from package.json
+  init      Initialize a new project
+  publish   Publish a package to npm
 
-const installDir = isGlobal
-    ? path.join(os.homedir(), '.cnsh-global', 'cnsh_lib')
-    : path.join(process.cwd(), 'cnsh_lib');
+Options:
+  -g        Install globally
+  -y        Initialize with default settings
+  --help    Display this help message
+  --version Display the version number
+`);
+};
 
-if (!fs.existsSync(installDir)) {
-    fs.mkdirSync(installDir, { recursive: true });
-}
+const printVersion = async () => {
+    const packageJsonPath = path.join(process.cwd(), 'package.json');
+    if (fs.existsSync(packageJsonPath)) {
+        const packageJson = fs.readJsonSync(packageJsonPath);
+        console.log(`cnsh version ${packageJson.version || 'unknown'}`);
+    } else {
+        console.log('package.json not found.');
+    }
+};
+
+const initProject = async (args) => {
+    if (args.includes('-y')) {
+        console.log('Initializing project with default settings...');
+        fs.writeJsonSync(path.join(process.cwd(), 'package.json'), DEFAULT_PACKAGE_JSON, { spaces: 2 });
+        console.log('Default package.json created.');
+    } else {
+        console.log('Initializing project...');
+        const name = await prompt('Project name (default: my-project): ') || 'my-project';
+        const version = await prompt('Version (default: 1.0.0): ') || '1.0.0';
+        const description = await prompt('Description (default: A new project): ') || 'A new project';
+        const author = await prompt('Author (default: Your Name): ') || 'Your Name';
+        
+        const packageJson = {
+            ...DEFAULT_PACKAGE_JSON,
+            name,
+            version,
+            description,
+            author
+        };
+
+        fs.writeJsonSync(path.join(process.cwd(), 'package.json'), packageJson, { spaces: 2 });
+        console.log('package.json created. Modify it as needed.');
+    }
+};
+
+const prompt = (query) => {
+    const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout
+    });
+    return new Promise((resolve) => {
+        rl.question(query, (answer) => {
+            rl.close();
+            resolve(answer);
+        });
+    });
+};
+
+const publishPackage = async () => {
+    try {
+        const { stdout, stderr } = await execPromise('npm publish');
+        if (stderr) {
+            console.error(chalk.red(`Error publishing package: ${stderr}`));
+        } else {
+            console.log(chalk.green(`Package published successfully: ${stdout}`));
+        }
+    } catch (error) {
+        console.error(chalk.red(`Failed to publish package: ${error.message}`));
+    }
+};
 
 const getTarballUrl = async (packageName) => {
     try {
@@ -115,6 +196,39 @@ const installDependencies = async () => {
     }
 };
 
+const command = args[0];
+
+if (args.includes('--help')) {
+    printHelp();
+    process.exit(0);
+}
+
+if (args.includes('--version')) {
+    await printVersion();
+    process.exit(0);
+}
+
+if (command === 'init') {
+    await initProject(args);
+    process.exit(0);
+}
+
+if (command === 'publish') {
+    await publishPackage();
+    process.exit(0);
+}
+
+const isGlobal = args.includes('-g');
+const packageName = args[args.length - 1];
+
+const installDir = isGlobal
+    ? path.join(os.homedir(), '.cnsh-global', 'cnsh_lib')
+    : path.join(process.cwd(), 'cnsh_lib');
+
+if (!fs.existsSync(installDir)) {
+    fs.mkdirSync(installDir, { recursive: true });
+}
+
 switch (command) {
     case 'add':
         await installPackage(packageName);
@@ -126,5 +240,5 @@ switch (command) {
         await installDependencies();
         break;
     default:
-        console.log(chalk.red('Unknown command. Use "add", "remove", or "install".'));
+        console.log(chalk.red('Unknown command. Use "add", "remove", "install", "init", or "publish".'));
 }
