@@ -127,7 +127,6 @@ For a list of available commands and help, use:
 cnsh --help
 ```
 
-**Note:** Running unavailable commands will display the available commands. Since the help command itself is unavailable, it's kind of a win-win situation!
 
 ## Example: Using `axios` with `cnsh`
 
