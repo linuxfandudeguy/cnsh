@@ -39,28 +39,15 @@ To install `cnsh` globally, follow these steps:
    To check if `cnsh` is installed correctly, run:
 
    ```bash
-   cnsh --help
+   cnsh
    ```
 
 
 
-   If `cnsh` is installed, you should see the following output:
+   If `cnsh` is installed, you should see the following output in red text along with the output from the `--help` command:
 
 ```mathematica
-Usage: cnsh <command> [options] [package]
-
-Commands:
-  add       Install a package
-  remove    Remove a package
-  install   Install dependencies from package.json
-  init      Initialize a new project
-  publish   Publish a package to npm
-
-Options:
-  -g        Install globally
-  -y        Initialize with default settings
-  --help    Display this help message
-  --version Display the version number
+Unknown command.
 ```
 
    This confirms that `cnsh` is properly installed and recognizing commands.
