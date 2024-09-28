@@ -227,6 +227,8 @@ Feel free to open issues or submit pull requests to help improve `cnsh`. If you 
 - Needs a `run` command
 - needs to make a exported path for global packages
 
+Once you Fork the package, publish it to npm with a name like @cnsh/{id}
+Thanks for contributing!
 ## Licence
 
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
