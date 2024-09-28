@@ -221,7 +221,13 @@ fetchData();
 
 Feel free to open issues or submit pull requests to help improve `cnsh`. If you have suggestions or feature requests, please let us know!
 
-## License
+# NEEDED FIXES FORK TO FIX
+- needs to install packages in `node_modules/.cnsh` and create a symlink
+- can only be used for packages without dependencies
+- Needs a `run` command
+- needs to make a exported path for global packages
+
+## Licence
 
 This project is licensed under the ISC License - see the [LICENSE](LICENSE) file for details.
 
