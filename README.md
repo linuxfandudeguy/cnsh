@@ -226,8 +226,9 @@ Feel free to open issues or submit pull requests to help improve `cnsh`. If you 
 - can only be used for packages without dependencies
 - Needs a `run` command
 - needs to make a exported path for global packages
+- needs a update Alert for The version specified in the `package.json` does not matchThe version according to the npm API
 
-Once you Fork the package, publish it to npm with a name like @cnsh/{id}
+Once you Fork the package, publish it to npm with a name like `@cnsh/{id}`
 Thanks for contributing!
 ## Licence
 
