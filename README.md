@@ -24,12 +24,12 @@
 
 To install `cnsh` globally, follow these steps:
 
-1. **Install via npm**
+1. **Install via pnpm**
 
    Run the following command in your terminal:
 
    ```bash
-   npm install -g cnsh --verbose
+   pnpm install -g cnsh --verbose
    ```
 
    This will install `cnsh` globally, making it available from any directory on your system.
@@ -78,7 +78,7 @@ This installs `lodash` into your project's `cnsh_lib` directory.
 To update it, run this command in your terminal:
 
 ```bash
-npm install -g cnsh@latest
+pnpm install -g cnsh@latest
 ```
 
 ### Removing a Package
